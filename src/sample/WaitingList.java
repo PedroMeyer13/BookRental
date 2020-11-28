@@ -41,7 +41,7 @@ public class WaitingList {
                 }
             }
 
-  9          System.out.println("Enter the name of user");
+            System.out.println("Enter the name of user");
             Scanner userName = new Scanner(System.in);
             String username = userName.next();
 

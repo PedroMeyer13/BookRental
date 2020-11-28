@@ -1,11 +1,17 @@
-package sample;
+package Menu;
 
+import Data.Search;
+import sample.CustomerHistory;
+
+import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
 public class mainMenu {
 
     Search search = new Search();
+    MenuRepeat repeat = new MenuRepeat();
+    Map<Integer, ArrayList> myHistory = new CustomerHistory().History();
 
     public mainMenu() throws InterruptedException {
         System.out.println("Select one operation to perform\n");
@@ -22,8 +28,6 @@ public class mainMenu {
 
         Scanner userInput = new Scanner ( System.in );
 
-        BooksMaps booksMaps = new BooksMaps();
-
         switch ( userInput.nextInt() ) {
             case 1:
                 System.out.println("Enter the name of the book");
@@ -31,10 +35,9 @@ public class mainMenu {
                 String bookname = userChoice.next();
                 System.out.println(search.linearSearch(bookname));
                 System.out.println("\nGoing back to the main menu in 15 sec");
-                TimeUnit.SECONDS.sleep(15);
-                new mainMenu();
-
+                repeat.Repeat();
                 break;
+
             case 2:
 
                 break;
@@ -57,10 +60,20 @@ public class mainMenu {
 
                 break;
             case 9:
+                System.out.println("Enter the Reader ID");
+                Scanner userId = new Scanner(System.in);
+                Integer bookHistory = userId.nextInt();
 
+                if (myHistory.containsKey(bookHistory) == true){
+                    System.out.println(myHistory.get(bookHistory));
+                }else{
+                    System.out.println("\nThe user Id is incorrect or the user has never rented a book in the store.");
+                }
+
+                repeat.Repeat();
                 break;
             default:
-                System.err.println ( "Unrecognized option, try again." );
+                System.err.println ( "\nUnrecognized option, try again." );
                 break;
         }
 

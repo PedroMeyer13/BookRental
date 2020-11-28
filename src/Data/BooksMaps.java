@@ -1,4 +1,4 @@
-package sample;
+package Data;
 
 import Entity.Book;
 
@@ -11,6 +11,12 @@ import java.util.Map;
 
 public class BooksMaps {
 
+    private String title;
+    private String author;
+    private String available;
+    private int id;
+    private String[] data;
+
 
     public Map<Integer,Book> loadData() {
 
@@ -22,11 +28,7 @@ public class BooksMaps {
             String contentLine = br.readLine();
 
             String[] data;
-            int id;
-            String title;
-            String author;
-            String available;
-            Integer counter = 1;
+
 
             while (contentLine != null) {
                 data = contentLine.split(",");

@@ -22,11 +22,6 @@ public class MyQueue implements ArrayQueue {
     @Override
     public boolean Enqueue(String newElement) {
 
-//        if(rear >= data.size() - 1) {
-//            System.out.println(data.size());
-//            return false;
-//        }
-
         if(front == -1) {
             front++;
         }

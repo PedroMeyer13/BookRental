@@ -1,4 +1,4 @@
-package sample;
+package Data;
 
 import java.io.BufferedWriter;
 import java.io.File;
