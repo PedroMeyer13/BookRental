@@ -1,6 +1,7 @@
 package Data;
 
 import Entity.Book;
+import Entity.Reader;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,34 +9,29 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Search {
+public class ReadersInfo {
 
-    public Search(){
-    }
+    private int id;
+    private String name;
+    private String address;
+    private String[] data;
 
-    public ArrayList<Book> loadData() {
+    public ArrayList<Reader> ReadersData() {
 
-        ArrayList<Book> records = new ArrayList<>();
+        ArrayList<Reader> records = new ArrayList<>();
 
         try {
             String filePath = new File("src\\Files\\Books").getAbsolutePath();
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String contentLine = br.readLine();
 
-            String[] data;
-            int id;
-            String title;
-            String author;
-            String available;
-
             while (contentLine != null) {
 
                 data = contentLine.split(",");
                 id = Integer.parseInt(data[0]);
-                title = data[1];
-                author = data[2];
-                available = data[3];
-                records.add(new Book(id, title, author, available));
+                name = data[1];
+                address = data[2];
+                records.add(new Reader(id, name, address));
                 contentLine = br.readLine();
             }
 
@@ -49,14 +45,14 @@ public class Search {
 
     public String linearSearch(String targetName){
 
-        ArrayList<Book> records = loadData();
+        ArrayList<Reader> records = ReadersData();
 
         // Going one by one the elements in the array
         for(int i = 0; i < records.size(); i++){
-            System.out.println("Found\n Book: " + records.get(i).getTitle() + " Author: " + records.get(i).getAuthor());
+            System.out.println("Found\n Name: " + records.get(i).getName() + " Address: " + records.get(i).getAddress());
             // When the element is found, stop the loop and return the index
-            if(records.get(i).getTitle().equals(targetName)){
-               return "Is this title available?  " + records.get(i).getAvailable();
+            if(records.get(i).getName().equals(targetName)){
+               return "Is this title available?  " + records.get(i);
 
             }
         }

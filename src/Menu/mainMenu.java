@@ -1,6 +1,9 @@
 package Menu;
 
-import Data.Search;
+import Data.BooksMaps;
+import Data.ReadersInfo;
+import Entity.Book;
+import Entity.Reader;
 import sample.CustomerHistory;
 
 import java.util.ArrayList;
@@ -9,9 +12,11 @@ import java.util.Scanner;
 
 public class mainMenu {
 
-    Search search = new Search();
+    ReadersInfo readersInfo = new ReadersInfo();
     MenuRepeat repeat = new MenuRepeat();
     Map<Integer, ArrayList> myHistory = new CustomerHistory().History();
+    Map<Integer, Book>  myBooks = new BooksMaps().loadData();
+    ArrayList<Reader> myReaders = new ReadersInfo().ReadersData();
 
     public mainMenu() throws InterruptedException {
         System.out.println("Select one operation to perform\n");
@@ -33,7 +38,7 @@ public class mainMenu {
                 System.out.println("Enter the name of the book");
                 Scanner userChoice = new Scanner(System.in);
                 String bookname = userChoice.next();
-                System.out.println(search.linearSearch(bookname));
+                System.out.println(readersInfo.linearSearch(bookname));
                 System.out.println("\nGoing back to the main menu in 15 sec");
                 repeat.Repeat();
                 break;
@@ -48,6 +53,14 @@ public class mainMenu {
 
                 break;
             case 5:
+                System.out.println("Enter the Id of the User");
+                Scanner userBorrowing = new Scanner(System.in);
+                String id = userBorrowing.next();
+
+                if (myReaders.contains(id)){
+
+                }
+
 
                 break;
             case 6:
@@ -69,7 +82,6 @@ public class mainMenu {
                 }else{
                     System.out.println("\nThe user Id is incorrect or the user has never rented a book in the store.");
                 }
-
                 repeat.Repeat();
                 break;
             default:

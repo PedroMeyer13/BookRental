@@ -1,6 +1,7 @@
 package sample;
 
 
+import Data.BorrowingData;
 import Menu.mainMenu;
 
 public class Main  {
@@ -9,6 +10,6 @@ public class Main  {
        // new BooksMaps().loadData();
        // new WaitingList().InsertWaitingList();
         //new CustomerHistory().History();
-
+        new BorrowingData().BorrowsSet();
     }
 }

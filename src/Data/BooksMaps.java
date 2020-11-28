@@ -27,7 +27,6 @@ public class BooksMaps {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String contentLine = br.readLine();
 
-            String[] data;
 
 
             while (contentLine != null) {
