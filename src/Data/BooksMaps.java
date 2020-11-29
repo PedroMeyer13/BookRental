@@ -27,8 +27,6 @@ public class BooksMaps {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String contentLine = br.readLine();
 
-
-
             while (contentLine != null) {
                 data = contentLine.split(",");
                 Book newBook = new Book(
@@ -45,7 +43,6 @@ public class BooksMaps {
             //Logger.getLogger(SearchFromFile.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("No file found");
         }
-        System.out.println(records);
         return records;
     }
 }

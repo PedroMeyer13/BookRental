@@ -6,7 +6,9 @@ public class Reader {
     private String address;
 
     public Reader(int id, String name, String address){
-
+        this.id = id;
+        this.name = name;
+        this.address = address;
     }
 
     public void setId(int id) {
@@ -31,6 +33,10 @@ public class Reader {
 
     public String getAddress() {
         return address;
+    }
+
+    public String toString(){
+        return " Id: " + this.getId() + " Name: " + this.getName() + " Address: " + this.getAddress() ;
     }
 }
 

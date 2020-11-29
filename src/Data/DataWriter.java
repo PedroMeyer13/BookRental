@@ -1,24 +1,18 @@
 package Data;
 
+import Entity.Book;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.Scanner;
 
 public class DataWriter  {
-
-    public DataWriter(){
+    public void FileUpdate(String text){
 
         try{
-            Scanner userInput= new Scanner(System.in);
-            System.out.println("The readers name");
 
-            String userName = userInput.nextLine();
-            System.out.println("Username is :" + userName);
-
-
-            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("C:\\Users\\pedro\\Desktop\\teste\\Userinput.txt")));
-            writer.write(userName);
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("src\\Files\\Books").getAbsolutePath()));
+            writer.write(text);
             writer.close();
 
         }catch (Exception e){

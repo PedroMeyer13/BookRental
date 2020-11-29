@@ -1,6 +1,7 @@
 package Data;
 
 import Entity.Book;
+import Entity.Borrowings;
 import Entity.Reader;
 
 import java.io.BufferedReader;
@@ -21,17 +22,18 @@ public class ReadersInfo {
         ArrayList<Reader> records = new ArrayList<>();
 
         try {
-            String filePath = new File("src\\Files\\Books").getAbsolutePath();
+            String filePath = new File("src\\Files\\Readers").getAbsolutePath();
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String contentLine = br.readLine();
 
             while (contentLine != null) {
-
                 data = contentLine.split(",");
-                id = Integer.parseInt(data[0]);
-                name = data[1];
-                address = data[2];
-                records.add(new Reader(id, name, address));
+                Reader info = new Reader(
+                    id = Integer.parseInt(data[0]),
+                    name = data[1],
+                    address = data[2]
+                );
+                records.add(info);
                 contentLine = br.readLine();
             }
 
@@ -39,24 +41,7 @@ public class ReadersInfo {
             //Logger.getLogger(SearchFromFile.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("No file found");
         }
-
         return records;
-    }
-
-    public String linearSearch(String targetName){
-
-        ArrayList<Reader> records = ReadersData();
-
-        // Going one by one the elements in the array
-        for(int i = 0; i < records.size(); i++){
-            System.out.println("Found\n Name: " + records.get(i).getName() + " Address: " + records.get(i).getAddress());
-            // When the element is found, stop the loop and return the index
-            if(records.get(i).getName().equals(targetName)){
-               return "Is this title available?  " + records.get(i);
-
-            }
-        }
-        return "not Found";
     }
 
 }

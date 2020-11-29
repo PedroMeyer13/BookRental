@@ -6,15 +6,11 @@ public class Book {
     private String author;
     private String available;
 
-    public Book(int id, String title, String author, String availability){
+    public Book(int id, String title, String author, String available){
         this.id = id;
         this.title = title;
         this.author = author;
-        this.available = availability;
-
-    }
-
-    public Book() {
+        this.available = available;
     }
 
     public int getId() {

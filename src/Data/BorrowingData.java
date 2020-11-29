@@ -6,8 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 public class BorrowingData {
 
@@ -17,10 +16,9 @@ public class BorrowingData {
     private String bookName;
 
 
+    public ArrayList<Borrowings> BorrowsList(){
 
-    public Set<Borrowings> BorrowsSet(){
-
-        Set<Borrowings> borrowSet = new HashSet<>();
+        ArrayList<Borrowings> borrowList = new ArrayList<>();
 
         try {
             String filePath = new File("src\\Files\\Borrowings").getAbsolutePath();
@@ -35,14 +33,13 @@ public class BorrowingData {
                         readerName = data[1],
                         bookName = data[2]
                 );
-                borrowSet.add(borrow);
+                borrowList.add(borrow);
                 contentLine = br.readLine();
             }
         }catch(IOException ex){
             System.out.println("File no Found");
         }
-        System.out.println(borrowSet);
-        return borrowSet;
+        return borrowList;
     }
 
 }
