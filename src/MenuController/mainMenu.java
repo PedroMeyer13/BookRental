@@ -1,14 +1,5 @@
-package Menu;
+package MenuController;
 
-import CustomMade.LinearSearch;
-import Data.BooksMaps;
-import Data.ReadersInfo;
-import Entity.Book;
-import Entity.Reader;
-import sample.CustomerHistory;
-
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.Scanner;
 
 public class mainMenu {
@@ -23,9 +14,9 @@ public class mainMenu {
         System.out.println("Press 5 to Register that a reader has borrowed a book.");
         System.out.println("Press 6 to add a Reader to a waiting list");
         System.out.println("Press 7 to Register that a reader has returned a book.");
-        System.out.println("Press 8 to If a book is returned and has a waiting queue, display to the user the next reader\n" +
-                "waiting for that book.");
-        System.out.println("Press 9 to For a specific reader, list the books that they have borrowed.");
+        System.out.println("Press 8 to For a specific reader, list the books that they have borrowed.");
+        //" 7 to If a book is returned and has a waiting queue, display to the user the next reader waiting for that book.
+
 
         Scanner userInput = new Scanner ( System.in );
         int menuOption = userInput.nextInt();

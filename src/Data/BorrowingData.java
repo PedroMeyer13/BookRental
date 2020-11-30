@@ -1,5 +1,6 @@
 package Data;
 
+import Entity.Book;
 import Entity.Borrowings;
 
 import java.io.BufferedReader;
@@ -7,6 +8,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BorrowingData {
 
@@ -16,9 +19,9 @@ public class BorrowingData {
     private String bookName;
 
 
-    public ArrayList<Borrowings> BorrowsList(){
+    public Map<Integer,Borrowings> BorrowsList(){
 
-        ArrayList<Borrowings> borrowList = new ArrayList<>();
+        Map<Integer, Borrowings> borrowList = new HashMap<Integer, Borrowings>();
 
         try {
             String filePath = new File("src\\Files\\Borrowings").getAbsolutePath();
@@ -33,7 +36,7 @@ public class BorrowingData {
                         readerName = data[1],
                         bookName = data[2]
                 );
-                borrowList.add(borrow);
+                borrowList.put(readerId,borrow);
                 contentLine = br.readLine();
             }
         }catch(IOException ex){

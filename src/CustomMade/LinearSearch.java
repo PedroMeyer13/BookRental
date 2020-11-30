@@ -1,43 +1,28 @@
 package CustomMade;
 
+import Data.BorrowingData;
 import Entity.Borrowings;
 import Entity.Reader;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class LinearSearch {
 
-    /*
-     * This method will receive an array and a value to be searched in the array
-     */
-    public int linealSearch(ArrayList<Integer> array, int target){
+    public Borrowings BorrowSearch(Integer userId){
 
-        // Going one by one the elements in the array
-        for(int i = 0; i < array.size(); i++){
-            System.out.println("Testing: " + array.get(i));
-            // When the element is found, stop the loop and return the index
-            if(array.get(i) == target){
-                return i;
+        Map<Integer, Borrowings> borrowings = new BorrowingData().BorrowsList();
+        try {
+            // Going one by one the elements in the array
+            for (Integer key : borrowings.keySet()) {
+                if (borrowings.get(key).getReaderId().equals(userId) == true) {
+                    System.out.println(borrowings.get(userId));
+                    return (borrowings.get(userId));
+                }
             }
+
+        }catch (Exception e){
         }
-        return -1;
-    }
-
-    public Borrowings BorrowSearch(Integer targetId, ArrayList<Borrowings>borrowList){
-
-        ArrayList<Borrowings> records = borrowList;
-
-        // Going one by one the elements in the array
-        for(int i = 0; i < records.size(); i++){
-            // When the element is found, stop the loop and return the index
-            if(records.get(i).getReaderId().equals(targetId)){
-                System.out.println(records.get(targetId).getReaderName());
-
-                return (records.get(targetId));
-
-            }
-        }
-        System.out.println("This Element is not in the Array");
         return null;
     }
 

@@ -1,16 +1,16 @@
-package Menu;
+package MenuController;
 
 import CustomMade.LinearSearch;
 import Data.BooksMaps;
 import Data.BorrowingData;
-import Data.DataWriter;
+import Model.DataWriter;
 import Data.ReadersInfo;
 import Entity.Book;
 import Entity.Borrowings;
 import Entity.Reader;
-import FilesUpdates.NewBorrow;
-import sample.CustomerHistory;
-import sample.WaitingList;
+import Model.NewBorrow;
+import View.CustomerHistory;
+import View.WaitingList;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class MenuController {
         Map<Integer, ArrayList> myHistory = new CustomerHistory().History();
         Map<Integer, Book>  myBooks = new BooksMaps().loadData();
         ArrayList<Reader> myReaders = new ReadersInfo().ReadersData();
-        ArrayList<Borrowings> myBorrowings = new BorrowingData().BorrowsList();
+        Map<Integer, Borrowings> myBorrowings = new BorrowingData().BorrowsList();
 
 
         switch ( menuOption ) {
@@ -50,37 +50,23 @@ public class MenuController {
 
                 break;
             case 5:
-                try {
-                    System.out.println("Enter the User's ID and Book ID");
-                    Scanner userBorrowing = new Scanner(System.in);
-                    Scanner bookBorrowed = new Scanner(System.in);
-                    Integer id = userBorrowing.nextInt() - 1;
-                    Integer bookId = bookBorrowed.nextInt();
-                    if (myReaders.get(id).getId() == id + 1){
-                        if (myBooks.get(bookId).getId() == bookId){
-                            if(myBooks.get(bookId).getAvailable().equals("yes")){
-                                System.out.println("Borrowing was registered in the system");
-                                myBooks.replace(bookId, new Book(bookId, myBooks.get(bookId).getTitle(), myBooks.get(bookId).getAuthor(), "no"));
-                                dataWriter.FileUpdate(myBorrow.AddBorrow(myBooks));
-                            }else {
-                                System.out.println("This book is not available. Would you like to be added to the Waiting List ? Y / N");
-                                Scanner userInput = new Scanner(System.in);
-                                String wait = userInput.next();
-                                if (wait.toLowerCase().contains("y")){
-                                    new WaitingList().InsertWaitingList(myBooks.get(bookId).getId(), myReaders.get(id).getName());
-                                    System.out.println("You've been added to the list");
-                                }
-                            }
-                        }
-                    }else {
-                        System.out.println("This ID is incorrect or user is not registered ");
-                    }
-                }catch (Exception e){
-                    System.out.println("This ID is not in the system");
-                }
+
+                myBorrow.ValidateBorrow(myReaders,myBorrowings,myBooks);
                 repeat.Repeat();
                 break;
             case 6:
+
+                System.out.println("Enter the Book Id");
+                userChoice = new Scanner(System.in);
+                Integer book = userChoice.nextInt();
+
+                System.out.println("Enter the Reader name");
+                userChoice = new Scanner(System.in);
+                String rName = userChoice.next();
+
+                new WaitingList().InsertWaitingList(book,rName);
+                System.out.println("You've been added to the list");
+                repeat.Repeat();
 
                 break;
             case 7:
