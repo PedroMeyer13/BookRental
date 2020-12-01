@@ -1,6 +1,7 @@
 package CustomMade;
 
 import Data.BorrowingData;
+import Entity.Book;
 import Entity.Borrowings;
 import Entity.Reader;
 

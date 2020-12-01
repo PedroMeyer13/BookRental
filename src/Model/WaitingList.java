@@ -1,4 +1,4 @@
-package View;
+package Model;
 
 import CustomMade.MyQueue;
 
@@ -14,6 +14,7 @@ public class WaitingList {
 
 
     public void InsertWaitingList(int bookId, String readerName) {
+
         try {
             MyQueue newQueue = new MyQueue();
 
@@ -22,11 +23,10 @@ public class WaitingList {
             String contentLine = buffer.readLine();
 
             BufferedWriter writer = Files.newBufferedWriter(Paths.get(filePath));
-            writer.write("");
             writer.flush();
 
             if (contentLine != null){
-                data = contentLine.split(" ");
+                data = contentLine.split(",");
 
                 while (counter <= data.length -1) {
                     newQueue.Enqueue(data[counter]);
@@ -40,7 +40,7 @@ public class WaitingList {
                 FileWriter fr = new FileWriter(filePath, true);
                 BufferedWriter br = new BufferedWriter(fr);
                 user = newQueue.First();
-                br.write(user+" ");
+                br.write(user+",");
                 newQueue.Dequeue();
 
                 br.close();

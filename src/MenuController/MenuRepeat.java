@@ -21,6 +21,7 @@ public class MenuRepeat {
 
             }else{
                 System.out.println("This Option is not recognized. Try Y or N");
+                Repeat();
             }
 
         }catch (Exception e){

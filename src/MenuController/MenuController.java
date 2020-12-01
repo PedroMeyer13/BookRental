@@ -3,14 +3,13 @@ package MenuController;
 import CustomMade.LinearSearch;
 import Data.BooksMaps;
 import Data.BorrowingData;
-import Model.DataWriter;
 import Data.ReadersInfo;
 import Entity.Book;
 import Entity.Borrowings;
 import Entity.Reader;
 import Model.NewBorrow;
-import View.CustomerHistory;
-import View.WaitingList;
+import Model.CustomerHistory;
+import Model.WaitingList;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -23,7 +22,6 @@ public class MenuController {
         NewBorrow myBorrow = new NewBorrow();
         LinearSearch search = new LinearSearch();
         MenuRepeat repeat = new MenuRepeat();
-        DataWriter dataWriter = new DataWriter();
         Map<Integer, ArrayList> myHistory = new CustomerHistory().History();
         Map<Integer, Book>  myBooks = new BooksMaps().loadData();
         ArrayList<Reader> myReaders = new ReadersInfo().ReadersData();
@@ -36,21 +34,19 @@ public class MenuController {
                 Scanner userChoice = new Scanner(System.in);
                 String bookname = userChoice.next();
                 System.out.println(search.ReadersSearch(bookname,myReaders));
-                System.out.println("\nGoing back to the main menu in 15 sec");
                 repeat.Repeat();
                 break;
 
             case 2:
-
+                repeat.Repeat();
                 break;
             case 3:
-
+                repeat.Repeat();
                 break;
             case 4:
-
+                repeat.Repeat();
                 break;
             case 5:
-
                 myBorrow.ValidateBorrow(myReaders,myBorrowings,myBooks);
                 repeat.Repeat();
                 break;
@@ -66,11 +62,11 @@ public class MenuController {
 
                 new WaitingList().InsertWaitingList(book,rName);
                 System.out.println("You've been added to the list");
-                repeat.Repeat();
 
+                repeat.Repeat();
                 break;
             case 7:
-
+                repeat.Repeat();
                 break;
             case 8:
                 System.out.println("Enter the Reader ID");
@@ -82,14 +78,15 @@ public class MenuController {
                 }else{
                     System.out.println("\nThe user Id is incorrect or the user has never rented a book in the store.");
                 }
-                repeat.Repeat();
 
+                repeat.Repeat();
                 break;
             case 9:
-
+                repeat.Repeat();
                 break;
             default:
                 System.err.println ( "\nUnrecognized option, try again." );
+                repeat.Repeat();
                 break;
         }
 
