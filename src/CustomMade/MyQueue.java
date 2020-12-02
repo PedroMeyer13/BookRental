@@ -21,7 +21,6 @@ public class MyQueue implements ArrayQueue {
 
     @Override
     public boolean Enqueue(String newElement) {
-
         if(front == -1) {
             front++;
         }

@@ -17,7 +17,6 @@ public class LinearSearch {
             // Going one by one the elements in the array
             for (Integer key : borrowings.keySet()) {
                 if (borrowings.get(key).getReaderId().equals(userId) == true) {
-                    System.out.println(borrowings.get(userId));
                     return (borrowings.get(userId));
                 }
             }

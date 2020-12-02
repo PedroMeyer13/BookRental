@@ -7,6 +7,7 @@ import Data.ReadersInfo;
 import Entity.Book;
 import Entity.Borrowings;
 import Entity.Reader;
+import Model.AddQueue;
 import Model.NewBorrow;
 import Model.CustomerHistory;
 import Model.WaitingList;
@@ -26,7 +27,8 @@ public class MenuController {
         Map<Integer, Book>  myBooks = new BooksMaps().loadData();
         ArrayList<Reader> myReaders = new ReadersInfo().ReadersData();
         Map<Integer, Borrowings> myBorrowings = new BorrowingData().BorrowsList();
-
+        WaitingList waitingList = new WaitingList();
+        AddQueue queue = new AddQueue();
 
         switch ( menuOption ) {
             case 1:
@@ -38,6 +40,12 @@ public class MenuController {
                 break;
 
             case 2:
+
+                if (waitingList.getWaitingList(1).First().contains("Pedro")){
+                    System.out.println("Enters");
+                }else{
+                    System.out.println("It does not");
+                }
                 repeat.Repeat();
                 break;
             case 3:
@@ -54,13 +62,13 @@ public class MenuController {
 
                 System.out.println("Enter the Book Id");
                 userChoice = new Scanner(System.in);
-                Integer book = userChoice.nextInt();
+                int book = userChoice.nextInt();
 
                 System.out.println("Enter the Reader name");
                 userChoice = new Scanner(System.in);
                 String rName = userChoice.next();
 
-                new WaitingList().InsertWaitingList(book,rName);
+                queue.ChangeWaitingList(book,rName,1);
                 System.out.println("You've been added to the list");
 
                 repeat.Repeat();

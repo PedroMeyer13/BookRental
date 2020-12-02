@@ -12,46 +12,28 @@ public class WaitingList {
     private String user;
     private int counter = 0;
 
+    public MyQueue getWaitingList(Integer bookId){
+        MyQueue queue = new MyQueue();
 
-    public void InsertWaitingList(int bookId, String readerName) {
-
-        try {
-            MyQueue newQueue = new MyQueue();
-
+        try{
             String filePath = new File("src\\BooksQueue\\Book"+bookId).getAbsolutePath();
             BufferedReader buffer = new BufferedReader(new FileReader(filePath));
             String contentLine = buffer.readLine();
 
-            BufferedWriter writer = Files.newBufferedWriter(Paths.get(filePath));
-            writer.flush();
+            buffer.close();
 
             if (contentLine != null){
                 data = contentLine.split(",");
 
                 while (counter <= data.length -1) {
-                    newQueue.Enqueue(data[counter]);
+                    queue.Enqueue(data[counter]);
                     counter++;
                 }
             }
 
-            newQueue.Enqueue(readerName);
-
-            while (!newQueue.isEmpty()){
-                FileWriter fr = new FileWriter(filePath, true);
-                BufferedWriter br = new BufferedWriter(fr);
-                user = newQueue.First();
-                br.write(user+",");
-                newQueue.Dequeue();
-
-                br.close();
-                fr.close();
-            }
-        } catch (IOException ex) {
-      }
+        }catch (Exception e){
+            System.out.println("Your queue could not be generated");
+        }
+        return queue;
     }
-
-    public void ExcludeWaitingList(){
-
-    }
-
 }

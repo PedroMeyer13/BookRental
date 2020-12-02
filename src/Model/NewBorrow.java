@@ -12,6 +12,8 @@ import java.util.Scanner;
 public class NewBorrow {
     TextFormat format = new TextFormat();
     LinearSearch search = new LinearSearch();
+    WaitingList waitingList = new WaitingList();
+    AddQueue AddQ = new AddQueue();
 
     public void ValidateBorrow(ArrayList<Reader> readers, Map<Integer, Borrowings> borrowings, Map<Integer, Book> map){
         try {
@@ -25,17 +27,23 @@ public class NewBorrow {
                 if (map.get(bookId).getId() == bookId){
                     if(search.BorrowSearch(readers.get(id).getId()) == null){
                         if (map.get(bookId).getAvailable().equals("yes")){
-                            System.out.println("Borrowing was registered in the system");
                             map.replace(bookId, new Book(bookId, map.get(bookId).getTitle(), map.get(bookId).getAuthor(), "no"));
                             borrowings.put(readers.get(id).getId(), new Borrowings(readers.get(id).getId(), readers.get(id).getName(), map.get(bookId).getTitle()));
                             format.updateBorrowings(borrowings);
                             format.AddBorrow(map);
+
+                            if (waitingList.getWaitingList(bookId).First().equals(readers.get(id).getName())){
+                                AddQ.ChangeWaitingList(map.get(bookId).getId(), readers.get(id).getName(),0);
+                            }
+
+                            //Print that the operation was completed successfully
+                            System.out.println("Borrowing was registered in the system");
                         }else {
                             System.out.println("This book is not available. Would you like to be added to the Waiting List ? Y / N");
                             Scanner userInput = new Scanner(System.in);
                             String wait = userInput.next();
                             if (wait.toLowerCase().contains("y")){
-                                new WaitingList().InsertWaitingList(map.get(bookId).getId(), readers.get(id).getName());
+                                AddQ.ChangeWaitingList(map.get(bookId).getId(), readers.get(id).getName(),1);
                                 System.out.println("You've been added to the list");
                             }
                         }
