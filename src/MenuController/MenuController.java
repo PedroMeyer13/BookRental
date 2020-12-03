@@ -25,6 +25,7 @@ public class MenuController {
         ArrayList<Reader> myReaders = new ReadersInfo().ReadersData();
         Map<Integer, Borrowings> myBorrowings = new BorrowingData().BorrowsList();
         AddQueue queue = new AddQueue();
+        ReturnBook returnBook = new ReturnBook();
 
         switch ( menuOption ) {
             case 1:
@@ -36,9 +37,6 @@ public class MenuController {
                 break;
 
             case 2:
-                TextFormat format = new TextFormat();
-                format.UpdateHistory(myHistory,2,"Moby Dick");
-
                 repeat.Repeat();
                 break;
             case 3:
@@ -67,6 +65,7 @@ public class MenuController {
                 repeat.Repeat();
                 break;
             case 7:
+                returnBook.BookReturn(myReaders,myBorrowings,myBooks);
                 repeat.Repeat();
                 break;
             case 8:

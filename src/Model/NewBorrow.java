@@ -56,7 +56,7 @@ public class NewBorrow {
                 System.out.println("This ID is incorrect or user is not registered ");
             }
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("Book Id or User Id are incorrect.");
         }
     }
 }

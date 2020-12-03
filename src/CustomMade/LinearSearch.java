@@ -42,4 +42,18 @@ public class LinearSearch {
         return "not Found";
     }
 
+    public Integer BookSearch(String bookName, Map<Integer, Book> map){
+
+        try {
+            // Going one by one the elements in the array
+            for (Integer key : map.keySet()) {
+                if (map.get(key).getTitle().contains(bookName)) {
+                    return (map.get(key).getId());
+                }
+            }
+
+        }catch (Exception e){
+        }
+        return null;
+    }
 }
