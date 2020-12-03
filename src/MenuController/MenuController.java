@@ -7,10 +7,7 @@ import Data.ReadersInfo;
 import Entity.Book;
 import Entity.Borrowings;
 import Entity.Reader;
-import Model.AddQueue;
-import Model.NewBorrow;
-import Model.CustomerHistory;
-import Model.WaitingList;
+import Model.*;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -27,7 +24,6 @@ public class MenuController {
         Map<Integer, Book>  myBooks = new BooksMaps().loadData();
         ArrayList<Reader> myReaders = new ReadersInfo().ReadersData();
         Map<Integer, Borrowings> myBorrowings = new BorrowingData().BorrowsList();
-        WaitingList waitingList = new WaitingList();
         AddQueue queue = new AddQueue();
 
         switch ( menuOption ) {
@@ -40,12 +36,9 @@ public class MenuController {
                 break;
 
             case 2:
+                TextFormat format = new TextFormat();
+                format.UpdateHistory(myHistory,2,"Moby Dick");
 
-                if (waitingList.getWaitingList(1).First().contains("Pedro")){
-                    System.out.println("Enters");
-                }else{
-                    System.out.println("It does not");
-                }
                 repeat.Repeat();
                 break;
             case 3:
@@ -55,7 +48,7 @@ public class MenuController {
                 repeat.Repeat();
                 break;
             case 5:
-                myBorrow.ValidateBorrow(myReaders,myBorrowings,myBooks);
+                myBorrow.ValidateBorrow(myReaders,myBorrowings,myBooks,myHistory);
                 repeat.Repeat();
                 break;
             case 6:

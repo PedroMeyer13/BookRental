@@ -15,7 +15,7 @@ public class NewBorrow {
     WaitingList waitingList = new WaitingList();
     AddQueue AddQ = new AddQueue();
 
-    public void ValidateBorrow(ArrayList<Reader> readers, Map<Integer, Borrowings> borrowings, Map<Integer, Book> map){
+    public void ValidateBorrow(ArrayList<Reader> readers, Map<Integer, Borrowings> borrowings, Map<Integer, Book> map, Map<Integer, ArrayList> history){
         try {
             System.out.println("Enter the User's ID");
             Scanner userBorrowing = new Scanner(System.in);
@@ -31,6 +31,7 @@ public class NewBorrow {
                             borrowings.put(readers.get(id).getId(), new Borrowings(readers.get(id).getId(), readers.get(id).getName(), map.get(bookId).getTitle()));
                             format.updateBorrowings(borrowings);
                             format.AddBorrow(map);
+                            format.UpdateHistory(history, readers.get(id).getId(),map.get(bookId).getTitle());
 
                             if (waitingList.getWaitingList(bookId).First().equals(readers.get(id).getName())){
                                 AddQ.ChangeWaitingList(map.get(bookId).getId(), readers.get(id).getName(),0);
@@ -55,7 +56,7 @@ public class NewBorrow {
                 System.out.println("This ID is incorrect or user is not registered ");
             }
         }catch (Exception e){
-            System.out.println("User ID or Book ID are Not in the System.");
+            System.out.println(e);
         }
     }
 }

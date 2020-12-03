@@ -28,4 +28,13 @@ public class DataWriter  {
             System.out.println("FIle could not be updated");
         }
     }
+    public void HistoryUpdate(String history){
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter(new File("src\\Files\\History").getAbsolutePath()));
+            writer.write(history);
+            writer.close();
+        }catch (Exception e){
+            System.out.println("FIle could not be updated");
+        }
+    }
 }

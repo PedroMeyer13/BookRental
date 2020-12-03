@@ -11,14 +11,12 @@ import java.util.Map;
 public class CustomerHistory {
 
     private int id;
-    private int counter = 1;
+    private int counter;
     private String[] data;
 
     public Map<Integer,ArrayList> History(){
 
-
         Map<Integer, ArrayList> borrowed = new HashMap<Integer, ArrayList>();
-        ArrayList<String> history = new ArrayList<>();
 
         try {
             String filePath = new File("src\\Files\\History").getAbsolutePath();
@@ -26,8 +24,10 @@ public class CustomerHistory {
             String contentLine = br.readLine();
 
             while (contentLine != null) {
+                ArrayList<String> history = new ArrayList<>();
                 data = contentLine.split(",");
                 id = Integer.parseInt(data[0]);
+                counter = 1;
                 while (counter < data.length){
                     history.add(data[counter]);
                     counter++;

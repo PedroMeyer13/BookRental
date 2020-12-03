@@ -3,6 +3,7 @@ package Model;
 import Entity.Book;
 import Entity.Borrowings;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 
@@ -15,13 +16,12 @@ public class TextFormat {
     public void AddBorrow(Map<Integer, Book> newMap){
         try{
             str = "";
-            while (counter <= 10){
+            while (counter <= newMap.size()){
                 str = str.concat(newMap.get(counter).getId()+","+newMap.get(counter).getTitle()+","+newMap.get(counter).getAuthor()+","+newMap.get(counter).getAvailable()+"\n");
                 counter++;
             }
         }catch (Exception e){
             System.out.println(e);
-            System.out.println("From Books");
         }
         dataWriter.FileUpdate(str);
     }
@@ -36,5 +36,31 @@ public class TextFormat {
             System.out.println("Borrowing file could not be updated");
         }
         dataWriter.BorrowingUpdate(str);
+    }
+
+    public void UpdateHistory(Map<Integer, ArrayList> history, Integer userId, String BookName){
+
+        str = "";
+        if (history.containsKey(userId)){
+
+            history.get(userId).add(BookName);
+        }else {
+            ArrayList<String> newRent = new ArrayList<>();
+            newRent.add(BookName);
+            history.put(userId, newRent);
+        }
+        try{
+            for (Integer key : history.keySet()){
+                ArrayList<String> newList= history.get(key);
+                str = str.concat(key.toString() + ",");
+                for (String num : newList) {
+                    str = str.concat(num + ",");
+                }
+                str = str.concat("\n");
+            }
+        }catch (Exception e){
+            System.out.println("Borrowing file could not be updated");
+        }
+        dataWriter.HistoryUpdate(str);
     }
 }

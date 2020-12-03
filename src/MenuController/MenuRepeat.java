@@ -1,5 +1,7 @@
 package MenuController;
 
+import View.mainMenu;
+
 import java.util.Scanner;
 
 public class MenuRepeat {

@@ -1,4 +1,6 @@
-package MenuController;
+package View;
+
+import MenuController.MenuController;
 
 import java.util.Scanner;
 
