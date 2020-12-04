@@ -47,7 +47,7 @@ public class Book {
     }
 
     public String toString(){
-        return " Id: " + this.getId() + " Title: " + this.getTitle() + " Author: " + this.getAuthor()+ " Availability: " + this.getAvailable()+" " ;
+        return " Id: " + this.getId() + " ,Title: " + this.getTitle() + " ,Author: " + this.getAuthor()+ " ,Availability: " + this.getAvailable()+" " ;
     }
 }
 

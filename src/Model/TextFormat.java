@@ -21,7 +21,7 @@ public class TextFormat {
                 counter++;
             }
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("Borrowing file could not be completed");
         }
         dataWriter.FileUpdate(str);
     }

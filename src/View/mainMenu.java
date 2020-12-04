@@ -17,12 +17,15 @@ public class mainMenu {
         System.out.println("Press 6 to add a Reader to a waiting list");
         System.out.println("Press 7 to Register that a reader has returned a book.");
         System.out.println("Press 8 to For a specific reader, list the books that they have borrowed.");
-        //" 7 to If a book is returned and has a waiting queue, display to the user the next reader waiting for that book.
 
+        try {
+            Scanner userInput = new Scanner ( System.in );
+            int menuOption = userInput.nextInt();
 
-        Scanner userInput = new Scanner ( System.in );
-        int menuOption = userInput.nextInt();
+            new MenuController(menuOption);
 
-        new MenuController(menuOption);
+        }catch (Exception e){
+            System.out.println("This option is not available");
+        }
     }
 }

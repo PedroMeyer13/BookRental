@@ -34,6 +34,7 @@ public class WaitingList {
         }catch (Exception e){
             System.out.println("Your queue could not be generated");
         }
+
         return queue;
     }
 }

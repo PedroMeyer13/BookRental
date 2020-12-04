@@ -32,7 +32,6 @@ public class NewBorrow {
                             format.updateBorrowings(borrowings);
                             format.AddBorrow(map);
                             format.UpdateHistory(history, readers.get(id).getId(),map.get(bookId).getTitle());
-
                             if (waitingList.getWaitingList(bookId).First().equals(readers.get(id).getName())){
                                 AddQ.ChangeWaitingList(map.get(bookId).getId(), readers.get(id).getName(),0);
                             }
@@ -56,7 +55,7 @@ public class NewBorrow {
                 System.out.println("This ID is incorrect or user is not registered ");
             }
         }catch (Exception e){
-            System.out.println("Book Id or User Id are incorrect.");
+            System.out.println(e.getLocalizedMessage());
         }
     }
 }

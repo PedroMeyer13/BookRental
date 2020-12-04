@@ -26,34 +26,30 @@ public class LinearSearch {
         return null;
     }
 
-    public String ReadersSearch(String targetName, ArrayList<Reader> readers){
-
-        ArrayList<Reader> records = readers;
-
+    public Reader ReadersSearch(Integer id,String targetName,ArrayList<Reader> readers){
         // Going one by one the elements in the array
-        for(int i = 0; i < records.size(); i++){
-            System.out.println("Found\n Name: " + records.get(i).getName() + " Address: " + records.get(i).getAddress());
+        for(int i = 0; i < readers.size(); i++){
             // When the element is found, stop the loop and return the index
-            if(records.get(i).getName().equals(targetName)){
-                return "Is this title available?  " + records.get(i);
+            if(readers.get(i).getId() == id  || readers.get(i).getName().equals(targetName)){
+                return readers.get(i);
 
             }
         }
-        return "not Found";
+        return null;
     }
 
-    public Integer BookSearch(String bookName, Map<Integer, Book> map){
+    public Book BookSearch(String bookName,Map<Integer, Book> map){
 
         try {
             // Going one by one the elements in the array
             for (Integer key : map.keySet()) {
-                if (map.get(key).getTitle().contains(bookName)) {
-                    return (map.get(key).getId());
+                if (map.get(key).getTitle().contains(bookName) || map.get(key).getAuthor().contains(bookName) ) {
+                    return (map.get(key));
                 }
             }
 
         }catch (Exception e){
         }
-        return null;
+        return map.get(bookName);
     }
 }
