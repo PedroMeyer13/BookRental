@@ -9,6 +9,8 @@ import java.io.FileWriter;
 
 public class DataWriter  {
 
+    // methods to write the information on the text files
+    
     public void FileUpdate(String text){
         try{
             BufferedWriter writer = new BufferedWriter(new FileWriter(new File("src\\Files\\Books").getAbsolutePath()));

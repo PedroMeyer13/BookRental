@@ -13,6 +13,7 @@ public class TextFormat {
     private int counter = 1;
     DataWriter dataWriter = new DataWriter();
 
+    // get the String to store in a file
     public void AddBorrow(Map<Integer, Book> newMap){
         try{
             str = "";

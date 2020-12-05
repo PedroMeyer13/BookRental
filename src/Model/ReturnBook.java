@@ -1,6 +1,7 @@
 package Model;
 
 import CustomMade.LinearSearch;
+import Data.WaitingList;
 import Entity.Book;
 import Entity.Borrowings;
 import Entity.Reader;

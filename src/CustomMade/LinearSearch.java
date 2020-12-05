@@ -10,12 +10,14 @@ import java.util.Map;
 
 public class LinearSearch {
 
+
     public Borrowings BorrowSearch(Integer userId){
 
         Map<Integer, Borrowings> borrowings = new BorrowingData().BorrowsList();
         try {
             // Going one by one the elements in the array
             for (Integer key : borrowings.keySet()) {
+                // When the element is found, stop the loop and return the index
                 if (borrowings.get(key).getReaderId().equals(userId) == true) {
                     return (borrowings.get(userId));
                 }
@@ -43,6 +45,7 @@ public class LinearSearch {
         try {
             // Going one by one the elements in the array
             for (Integer key : map.keySet()) {
+                // When the element is found, stop the loop and return the index
                 if (map.get(key).getTitle().contains(bookName) || map.get(key).getAuthor().contains(bookName) ) {
                     return (map.get(key));
                 }

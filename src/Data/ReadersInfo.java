@@ -17,13 +17,18 @@ public class ReadersInfo {
 
     public ArrayList<Reader> ReadersData() {
 
+        // create an ArrayList to store the content
         ArrayList<Reader> records = new ArrayList<>();
 
         try {
+            // get the file path
             String filePath = new File("src\\Files\\Readers").getAbsolutePath();
+            // read the file
             BufferedReader br = new BufferedReader(new FileReader(filePath));
+            // store the content as a String
             String contentLine = br.readLine();
 
+            // create a new instance of Reader
             while (contentLine != null) {
                 data = contentLine.split(",");
                 Reader info = new Reader(
@@ -31,7 +36,9 @@ public class ReadersInfo {
                     name = data[1],
                     address = data[2]
                 );
+                // add to the Array List
                 records.add(info);
+                // go to the next line
                 contentLine = br.readLine();
             }
 
@@ -39,6 +46,7 @@ public class ReadersInfo {
             //Logger.getLogger(SearchFromFile.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("No file found");
         }
+        // return the list
         return records;
     }
 
